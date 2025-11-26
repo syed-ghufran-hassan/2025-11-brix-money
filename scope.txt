@@ -1,0 +1,15 @@
+./src/protocol/FastAccessVault.sol
+./src/protocol/YieldForwarder.sol
+./src/protocol/iTryIssuer.sol
+./src/token/iTRY/crosschain/iTryTokenOFT.sol
+./src/token/iTRY/crosschain/iTryTokenOFTAdapter.sol
+./src/token/iTRY/iTry.sol
+./src/token/wiTRY/StakediTry.sol
+./src/token/wiTRY/StakediTryCooldown.sol
+./src/token/wiTRY/StakediTryCrosschain.sol
+./src/token/wiTRY/StakediTryFastRedeem.sol
+./src/token/wiTRY/crosschain/UnstakeMessenger.sol
+./src/token/wiTRY/crosschain/wiTryOFT.sol
+./src/token/wiTRY/crosschain/wiTryOFTAdapter.sol
+./src/token/wiTRY/crosschain/wiTryVaultComposer.sol
+./src/token/wiTRY/iTrySilo.sol

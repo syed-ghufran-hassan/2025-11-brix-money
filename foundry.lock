@@ -1,0 +1,23 @@
+{
+  "lib/LayerZero-v2": {
+    "rev": "2ff4988f85b5c94032eb71bbc4073e69c078179d"
+  },
+  "lib/forge-std": {
+    "rev": "8bbcf6e3f8f62f419e5429a0bd89331c85c37824"
+  },
+  "lib/openzeppelin-contracts": {
+    "rev": "e50c24f5839db17f46991478384bfda14acfb830"
+  },
+  "lib/openzeppelin-contracts-upgradeable": {
+    "rev": "bc95521e34dcd49792065e264a7ad2b5a86f0091"
+  },
+  "lib/openzeppelin-foundry-upgrades": {
+    "rev": "cbce1e00305e943aa1661d43f41e5ac72c662b07"
+  },
+  "lib/redstone-oracles-monorepo": {
+    "rev": "0b2f68e63f9896883d86b0c9f184e5c1bd39e4af"
+  },
+  "lib/solidity-bytes-utils": {
+    "rev": "e0115c4d231910df47ce3b60625ce562fe4af985"
+  }
+}

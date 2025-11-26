@@ -1,0 +1,48 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+# Deterministic deployment settings for CREATE2
+solc = "0.8.20"  # Pin exact Solidity version to ensure consistent bytecode
+evm_version = "cancun"  # Target EVM version
+bytecode_hash = "none"  # Exclude metadata hash from bytecode for deterministic addresses
+cbor_metadata = false  # Disable CBOR metadata encoding
+always_use_create_2_factory = true  # Always use standard CREATE2 deployer (0x4e59b44847b379578588920cA78FbF26c0B4956C)
+
+# Optimizer settings
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+ffi = true  # Needed for LayerZero tests
+sparse_mode = true
+
+# File system permissions for deployment scripts
+fs_permissions = [{ access = "read-write", path = "./broadcast" }]
+
+
+# Explicit cache settings for consistent incremental builds
+cache = true
+cache_path = "cache"
+force = false  # Don't force recompile everything
+
+[lint]
+exclude_lints = [
+ "screaming-snake-case-immutable",
+ "mixed-case-variable",
+ "mixed-case-function",
+ "unused-import",
+ "unaliased-plain-import"
+]
+
+# Fast profile for development - no via_ir, no scripts
+[profile.fast]
+src = "src"
+out = "out"
+libs = ["lib"]
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+sparse_mode = true
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

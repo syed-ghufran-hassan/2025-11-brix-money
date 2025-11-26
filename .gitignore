@@ -1,0 +1,33 @@
+# Compiler files
+cache/
+out/
+
+# AI Context
+.claude/
+
+# Test files
+coverage/
+lcov.info
+.gas-snapshot
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*
+/broadcast/*/31337/
+contracts/broadcast/*
+
+# Debug info
+*.dbg.json
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+
+# Private keys and secrets
+*.pem
+*.key
+
+# Logs
+*.log
+/tmp/anvil.log
