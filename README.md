@@ -144,9 +144,10 @@ The issues we are most concerned are those related to unbacked minting of iTry, 
 | Whitelist Manager	| Manages whitelists in the system	| add/remove Blacklist entries for iTry	| Multisig |
 | Soft Restricted Staker	| Can transfer the wiTry token, but cannot stake it	| Normal token usage, except staking to wiTry contract	| Blacklist Manager |
 | Composer	| Accesses crosschain specific function in wiTry that allow to operate in name of another user |	Can use the composer-specific functions in the wiTry contract	| Owner |
-| Minter |	Can mint iTry |	Can mint iTry	| Issuer contract| 
+| Minter |	Can mint iTry |	Can mint iTry	| Owner| 
 | Blacklisted	| Cannot transfer funds |	none |	Blacklist Manager |
 | Whitelisted	| Can transfer funds in “onlyWhitelist” state	| Token transfer |	Whitelist Manager | 
+| Yield Processor	| Can trigger Yield distribution on the Issuer contract	|  Can call "processAccumulatedYield" in the iTryIssuer |	Owner | 
 
 ## Running tests
 
