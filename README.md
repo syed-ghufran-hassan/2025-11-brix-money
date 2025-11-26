@@ -20,12 +20,6 @@
     - Upgrading a Low-risk finding from a QA report to a Medium- or High-risk finding is not supported.
     - As such, wardens are encouraged to select the appropriate risk level carefully during the submission phase.
 
-## V12 findings
-
-[V12](https://v12.zellic.io/) is [Zellic](https://zellic.io)'s in-house AI auditing tool. It is the only autonomous Solidity auditor that [reliably finds Highs and Criticals](https://www.zellic.io/blog/introducing-v12/). All issues found by V12 will be judged as out of scope and ineligible for awards.
-
-V12 findings will be posted in this section within the first two days of the competition.  
-
 ## Publicly known issues
 
 _Anything included in this section is considered a publicly known issue and is therefore ineligible for awards._
@@ -36,9 +30,7 @@ Any centralization risks are out-of-scope for the purposes of this audit contest
 
 ### Zellic Audit Report Issues
 
-The codebase has undergone a Zellic audit with a fix review pending. A draft report is contained within the repository [here](#).
-
-The following issues identified in the audit report are considered out-of-scope, with some being fixed in the current iteration of the codebase:
+The codebase has undergone a Zellic audit with a fix review pending. The following issues identified in the Zellic audit are considered out-of-scope, with some being fixed in the current iteration of the codebase:
 
 -  Blacklisted user can transfer tokens on behalf of non-blacklisted users using allowance - `_beforeTokenTransfer` does not validate `msg.sender`, a blacklisted caller can still initiate a same-chain token transfer on behalf of a non-blacklisted user as long as allowance exists.
 - Griefing attacks around the `MIN_SHARES` variable of the ERC2646 vault: The protocol will perform an initial deposit to offset this risk. 
@@ -54,7 +46,7 @@ The protocol enables the minting and redemption of iTRY tokens (and their staked
 
 ## Links
 
-- **Previous audits:** [Zellic Report](#) - [See known issues](#zellic-audit-report-issues)
+- **Previous audits:** Zellic Report - [See known issues](#zellic-audit-report-issues)
 - **Documentation:** https://hackmd.io/@EKJz7PaeT2GeAUJS83WWVw/SJPLb3QZWe
 - **Website:** https://www.brix.money/
 - **X/Twitter:** https://x.com/brix_money
