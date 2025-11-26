@@ -65,6 +65,8 @@ The protocol enables the minting and redemption of iTRY tokens (and their staked
 
 ### Files in scope
 
+*Note: The nSLoC counts in the following table have been automatically generated and may differ depending on the definition of what a "significant" line of code represents. As such, they should be considered indicative rather than absolute representations of the lines involved in each contract.*
+
 | File   | nSLOC |
 | ------ | ----- |
 |[src/protocol/FastAccessVault.sol](https://github.com/code-423n4/2025-11-brix-money/blob/main/src/protocol/FastAccessVault.sol)| 118 |
