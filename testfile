@@ -1,0 +1,101 @@
+```solidity
+  function processNewYield(uint256 _newYieldAmount) external override {
+        if (_newYieldAmount == 0) revert CommonErrors.ZeroAmount();
+        if (yieldRecipient == address(0)) revert RecipientNotSet();
+
+         @ uint256 contractBalance = yieldToken.balanceOf(address(this));
+         @  require(_newYieldAmount <= contractBalance, "Insufficient balance");
+   
+
+        // Transfer yield tokens to the recipient
+        if (!yieldToken.transfer(yieldRecipient, _newYieldAmount)) {
+            revert CommonErrors.TransferFailed();
+        }
+
+        emit YieldForwarded(yieldRecipient, _newYieldAmount);
+    }
+
+```
+```solidity
+  function test_processNewYield_withInsufficientBalance_doesNotCheckBalance() public {
+    // Arrange: Contract has 500 tokens, but we try to transfer 1000
+    uint256 contractBalance = 500e18;
+    uint256 transferAmount = 1000e18;
+    
+    yieldToken.mint(address(forwarder), contractBalance);
+    
+    // Act & Assert: The contract doesn't check balance, relies on transfer() to revert
+    // This is the vulnerability - no explicit balance check
+    
+    forwarder.processNewYield(transferAmount);
+    
+    
+}
+```
+
+```solidity
+ function processNewYield(uint256 _newYieldAmount) external override onlyOwner {
+        if (_newYieldAmount == 0) revert CommonErrors.ZeroAmount();
+        if (yieldRecipient == address(0)) revert RecipientNotSet();
+
+          uint256 contractBalance = yieldToken.balanceOf(address(this));
+           require(_newYieldAmount <= contractBalance, "Insufficient balance");
+   
+
+        // Transfer yield tokens to the recipient
+        if (!yieldToken.transfer(yieldRecipient, _newYieldAmount)) {
+            revert CommonErrors.TransferFailed();
+        }
+
+        emit YieldForwarded(yieldRecipient, _newYieldAmount);
+    }
+```
+
+```solidity
+function test_processNewYield_withOnlyOwnerModifier_preventsBypass() public {
+    // This test assumes you've fixed the contract by adding onlyOwner
+    
+    // Arrange: Yield exists
+    uint256 yieldAmount = 1000e18;
+    yieldToken.mint(address(forwarder), yieldAmount);
+    
+    // Act & Assert: Non-owner should fail
+    vm.expectRevert(); // "Ownable: caller is not the owner"
+    vm.prank(nonOwner);
+    forwarder.processNewYield(yieldAmount);
+    
+    // Owner should succeed
+    vm.prank(owner);
+    forwarder.processNewYield(yieldAmount);
+    
+    console.log("FIXED: onlyOwner modifier prevents access control bypass");
+}
+function test_processNewYield_accessControlBypass_multipleAttackers() public {
+    // Arrange
+    uint256 totalYield = 3000e18;
+    yieldToken.mint(address(forwarder), totalYield);
+    
+    address attacker1 = makeAddr("attacker1");
+    address attacker2 = makeAddr("attacker2");
+    address attacker3 = makeAddr("attacker3");
+    
+    // Act: Three different attackers drain the contract
+    uint256 drainAmount = 1000e18;
+    
+    vm.prank(attacker1);
+    forwarder.processNewYield(drainAmount);
+    
+    vm.prank(attacker2);
+    forwarder.processNewYield(drainAmount);
+    
+    vm.prank(attacker3);
+    forwarder.processNewYield(drainAmount);
+    
+    // Assert: Contract fully drained by random addresses
+    assertEq(yieldToken.balanceOf(address(forwarder)), 0, "Contract should be empty");
+    assertEq(yieldToken.balanceOf(recipient), totalYield, "Recipient got all tokens");
+    console.log("CRITICAL: 3 different attackers drained the contract");
+}
+```
+
+
